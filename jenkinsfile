@@ -90,7 +90,7 @@ pipeline {
             }
         }
 
-                stage ('Deploy in staging') {
+        stage ('Deploy in prod') {
             agent any
             environment {
                 HOSTNAME_DEPLOY_PROD = "ec2-3-90-139-144.compute-1.amazonaws.com"
