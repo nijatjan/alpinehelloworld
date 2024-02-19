@@ -1,11 +1,11 @@
 pipeline {
     agent none
     environment {
-        HOSTNAME_DEPLOY_STAGING = "ec2-34-229-227-49.compute-1.amazonaws.com"
-        HOSTNAME_DEPLOY_PROD = "ec2-3-87-138-74.compute-1.amazonaws.com"
         DOCKERHUB_AUTH = credentials('DOCKERHUB_AUTH')
         ID_DOCKER = "${DOCKERHUB_AUTH_USR}"
         PORT_EXPOSED = "80"
+        HOSTNAME_DEPLOY_STAGING = "ec2-34-229-227-49.compute-1.amazonaws.com"
+        HOSTNAME_DEPLOY_PROD = "ec2-3-87-138-74.compute-1.amazonaws.com"
     }
 
     stages {
