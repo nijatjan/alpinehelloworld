@@ -135,13 +135,13 @@ pipeline {
             }
         }
     }
-    post {
+     post {
         always {
-            script {
-                slackNotifier currentBuild.result
-            }
-        }
-    }
+          script {
+            slackNotifier currentBuild.result
+      }
+    }  
+  }
 }
-// nijatanwar11
+// nijatanwar
 
