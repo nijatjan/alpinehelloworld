@@ -13,11 +13,7 @@ pipeline {
             agent any
             steps {
                 script {
-                    sh '''
-                    echo $ID_DOCKER
-                    sh 'docker build -t ${ID_DOCKER}/${IMAGE_NAME}:${IMAGE_TAG} .
-                    echo $IMAGE_NAME
-                    '''
+                    sh 'docker build -t ${ID_DOCKER}/${IMAGE_NAME}:${IMAGE_TAG} .'
                 }
             }
         }
@@ -73,9 +69,8 @@ pipeline {
 
         stage ('Deploy in staging') {
             agent any
-
             steps {
-                sshagent (credentials:['SSH_AUTH_SERVER']) {
+                sshagent (credentials:['SSH_AUTH_SERVER']) { //SSH_AUTH_SERVER
                     sh '''
                         [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
                         ssh-keyscan -t rsa,dsa ${HOSTNAME_DEPLOY_STAGING} >> ~/.ssh/known_hosts
@@ -98,7 +93,7 @@ pipeline {
             steps {
               script {
                 sh '''
-                  curl ${HOSTNAME_DEPLOY_STAGING} | grep -q "Hello world Nijat!"
+                  curl ${HOSTNAME_DEPLOY_STAGING} | grep -q "Hello world!"
                 '''
               }
             }
