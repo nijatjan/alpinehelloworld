@@ -89,6 +89,16 @@ pipeline {
                 }
             }
         }
+        stage('Test Staging') {
+            agent any
+            steps {
+              script {
+                sh '''
+                  curl ${HOSTNAME_DEPLOY_STAGING} | grep -q "Hello world Nijat!"
+                '''
+              }
+            }
+        }
 
         stage ('Deploy in prod') {
             agent any
