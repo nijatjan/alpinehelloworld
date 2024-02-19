@@ -13,7 +13,11 @@ pipeline {
             agent any
             steps {
                 script {
-                    sh 'docker build -t ${ID_DOCKER}/${IMAGE_NAME}:${IMAGE_TAG} .'
+                    sh '''
+                    echo $ID_DOCKER
+                    sh 'docker build -t ${ID_DOCKER}/${IMAGE_NAME}:${IMAGE_TAG} .
+                    echo $IMAGE_NAME
+                    '''
                 }
             }
         }
@@ -120,6 +124,16 @@ pipeline {
                             -C "$command1 && $command2 && $command3 && $command4"
                     '''
                 }
+            }
+        }
+        stage('Test Prod') {
+            agent any
+            steps {
+              script {
+                sh '''
+                  curl ${HOSTNAME_DEPLOY_STAGING} | grep -q "Hello world Nijat!"
+                '''
+              }
             }
         }
     }
