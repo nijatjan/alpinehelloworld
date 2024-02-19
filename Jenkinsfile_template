@@ -1,20 +1,11 @@
 pipeline {
      environment {
-       DOCKERHUB_AUTH  = credentials('dockerhub')
-        ID_DOCKER = "${DOCKERHUB_AUTH_USR}"
         PORT_EXPOSED = "80"
         PRODUCTION = "${ID_DOCKER}-production"
      }
      agent none
-     stages {
-         stage('Build image') {
-             agent any
-             steps {
-                script {
-                }
-             }
-        }
-        stage('Run container based on builded image') {
+     stage {
+     stage('Run container based on builded image') {
             agent any
             steps {
                script {
@@ -23,6 +14,14 @@ pipeline {
                }
             }
        }
+     stages {
+         stage('Build image') {
+             agent any
+             steps {
+                script {
+                }
+             }
+        }
        stage('Test image') {
            agent any
            steps {
