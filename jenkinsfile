@@ -93,7 +93,7 @@ pipeline {
             steps {
               script {
                 sh '''
-                  curl ${HOSTNAME_DEPLOY_STAGING} | grep -q "Hello world Nijiati!"
+                  curl ${HOSTNAME_DEPLOY_STAGING} | grep -q "Hello world Nijat!"
                 '''
               }
             }
@@ -126,7 +126,7 @@ pipeline {
             steps {
               script {
                 sh '''
-                  curl ${HOSTNAME_DEPLOY_STAGING} | grep -q "Hello world Nijiati!"
+                  curl ${HOSTNAME_DEPLOY_STAGING} | grep -q "Hello world Nijat!"
                 '''
               }
             }
@@ -142,5 +142,5 @@ pipeline {
         }   
     }    
 }
-// nijatanwar01
+// nijatanwar
 
